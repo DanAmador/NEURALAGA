@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Bounds
   layers:
   - Default
   - TransparentFX
@@ -13,10 +15,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Bounds
+  - Player
+  - Bullet
   - 
   - 
   - 
@@ -44,9 +46,9 @@ TagManager:
   - name: Background
     uniqueID: 1105357697
     locked: 0
-  - name: Midground
+  - name: Projectile
     uniqueID: 3181113515
     locked: 0
-  - name: Foreground
+  - name: Player
     uniqueID: 3497322505
     locked: 0
