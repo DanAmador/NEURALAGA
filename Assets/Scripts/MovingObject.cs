@@ -4,9 +4,8 @@ using System.Collections;
 public class MovingObject : MonoBehaviour {
     public Rigidbody2D rb;
     public int health = 1;
-
     void Awake() {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();   
     }
 
 
@@ -17,7 +16,7 @@ public class MovingObject : MonoBehaviour {
         }
     }
 
-    protected void Die() {
+    protected virtual void Die() {
         Destroy(gameObject);
     }
 }

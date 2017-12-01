@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Bounds
+  - EnemyBounds
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -15,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - Enemy
   - Bounds
-  - Player
   - Bullet
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -48,6 +50,9 @@ TagManager:
     locked: 0
   - name: Projectile
     uniqueID: 3181113515
+    locked: 0
+  - name: Enemy
+    uniqueID: 1191852845
     locked: 0
   - name: Player
     uniqueID: 3497322505

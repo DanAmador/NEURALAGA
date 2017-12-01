@@ -6,31 +6,35 @@ public class Bullet : MovingObject {
     public int direction = 1;
 
     void Update() {
-        rb.velocity = new Vector2(0, 10 * direction);
+        rb.velocity = new Vector2(0, direction);
     }
 
     public void ChangeDirection() {
         direction *= -1;
     }
 
+    public void ChangeColor(Color col) {
+        GetComponent<SpriteRenderer>().color = col;
+    }
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (direction > 0) {
             if (collision.gameObject.tag == "Enemy") {
+                GameControl.instance.UpdateScore(collision.gameObject.GetComponent<Enemy>().hitScore);
                 collision.gameObject.GetComponent<Enemy>().Damage();
-                this.Die();
-
+                Destroy(gameObject);
             }
         }
         else {
             if (collision.gameObject.tag == "Player") {
                 collision.gameObject.GetComponent<Player>().Damage();
-                this.Die();
+                Destroy(gameObject);
             }
 
         }
         if (collision.gameObject.tag == "Bounds") {
-            this.Die();
+            Destroy(gameObject);
+
 
         }
     }
