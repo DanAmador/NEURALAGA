@@ -10,7 +10,7 @@ public class Player : Ships {
     void Awake() {
         health = 3;
         rb = GetComponent<Rigidbody2D>();
-
+        rb.freezeRotation = true;
         if (instance == null) {
             instance = this;
         }
@@ -33,7 +33,7 @@ public class Player : Ships {
 
     public override void Damage() {
         base.Damage();
-        GameControl.instance.updateHealth(health);
+        GameControl.instance.updateHealth();
 
     }
 

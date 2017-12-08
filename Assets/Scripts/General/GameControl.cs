@@ -30,9 +30,9 @@ public class GameControl : MonoBehaviour {
         }
     }
 
-    public void updateHealth(int health) {
+    public void updateHealth() {
         if (!gameOver) {
-            this.health = health;
+            this.health = Player.instance.health;
             healthText.text = "Health: " + this.health.ToString();
         }
     }

@@ -35,6 +35,11 @@ public abstract class Enemy : Ships {
         GameControl.instance.UpdateScore(hitScore);
     }
 
+    protected override void Die() {
+        base.Die();
+        PickupSpawner.instance.spawnPickup(transform);
+    }
+
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "EnemyBounds") {
 

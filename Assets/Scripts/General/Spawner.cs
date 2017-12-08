@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour {
 
     private void Update() {
         spawnRate = Mathf.Clamp(5 - Mathf.Log((Time.time) / 120 + 1), 0.5f, 10);
-        maxEnemies = (int) Mathf.Clamp(Mathf.Exp(Time.time/100f) +1 ,1, 10);
+        maxEnemies = (int)Mathf.Clamp(Mathf.Exp(Time.time / 100f) + 1, 1, 10);
 
         if (timeSinceLastSpawn >= spawnRate) {
             StartCoroutine("spawnEnemies");
@@ -32,8 +32,5 @@ public class Spawner : MonoBehaviour {
                 new Vector2(Random.Range(minX, maxX), 7f), Quaternion.identity);
             yield return new WaitForSeconds(0.5f);
         }
-    }
-    void SpawnEnemy() {
-
     }
 }
