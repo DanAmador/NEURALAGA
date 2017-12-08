@@ -6,7 +6,6 @@ public class EnemyKamikaze : Enemy {
     private Vector2 _startPosition, axis;
     public float frequency = 5f;
     public GameObject kamiKill;
-    public Player player;
 
     protected override void Action() {
 
@@ -15,8 +14,8 @@ public class EnemyKamikaze : Enemy {
     }
 
     void Start() {
-        //xSpeed = Random.Range(1f, 5f); //magnitude
-        //ySpeed = Random.Range(2f, 3f);
+        xSpeed = Random.Range(1f, 5f); //magnitude
+        ySpeed = Random.Range(2f, 3f);
         _startPosition = transform.position;
         axis = transform.right;
     }

@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 95414563394500790}
   - component: {fileID: 50293289453425612}
   - component: {fileID: 60689231893460134}
-  - component: {fileID: 114858277097246262}
   - component: {fileID: 58589829854352514}
+  - component: {fileID: 114559431156043590}
   m_Layer: 10
   m_Name: enemyKamikaze
   m_TagString: Enemy
@@ -136,7 +136,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114858277097246262
+--- !u!114 &114559431156043590
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -144,20 +144,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1398468347997318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0222f4be1c3438845adc81fe7a099abc, type: 3}
+  m_Script: {fileID: 11500000, guid: 278155619c27d1d4391316e5dd39796d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   health: 1
-  xSpeed: 3
-  ySpeed: 3
-  fireRate: 0
-  canShoot: 0
-  hitScore: 10
   explosion: {fileID: 1866954963652368, guid: 01b7ffa96705b234d88fbb036b721bc0, type: 2}
-  frequency: 2
+  xSpeed: 0
+  ySpeed: 0
+  fireRate: 0.03
+  canShoot: 0
+  hitScore: 15
+  frequency: 5
   kamiKill: {fileID: 1674919546563830, guid: 3338ac2870c522343ac4400487a387c3, type: 2}
-  player: {fileID: 114474399828340040, guid: fbbb62749f45663489b4a95c6028e189, type: 2}
 --- !u!212 &212917803075130736
 SpriteRenderer:
   m_ObjectHideFlags: 1

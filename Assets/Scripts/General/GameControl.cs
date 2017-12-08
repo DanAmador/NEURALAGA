@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class GameControl : MonoBehaviour {
     public static GameControl instance;
     public bool gameOver = false;
@@ -37,6 +36,7 @@ public class GameControl : MonoBehaviour {
             healthText.text = "Health: " + this.health.ToString();
         }
     }
+
     public void PlayerDied() {
         gameOver = true;
     }

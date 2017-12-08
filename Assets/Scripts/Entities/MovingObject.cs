@@ -9,7 +9,7 @@ public class MovingObject : MonoBehaviour {
     }
 
 
-    public void Damage() {
+    public virtual void Damage() {
         health--;
         if (health <= 0) {
             Die();

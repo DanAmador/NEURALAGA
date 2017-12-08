@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MovingObject {
+public class Player : Ships {
     public float thrust = 500f;
     public GameObject bullet;
-    public GameObject explosion;
     public static Player instance;
 
     void Awake() {
@@ -32,18 +31,16 @@ public class Player : MovingObject {
     }
 
 
-    public void Damage() {
-        health--;
+    public override void Damage() {
+        base.Damage();
         GameControl.instance.updateHealth(health);
-        if (health <= 0) {
-            Die();
-            GameControl.instance.PlayerDied();
-        }
+
     }
 
     protected override void Die() {
-        Destroy(gameObject);
-        Instantiate(explosion, transform.position, Quaternion.identity);
+        GameControl.instance.PlayerDied();
+        base.Die();
+
     }
 
     void Shoot() {

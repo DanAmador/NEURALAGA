@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95092931119546598}
   - component: {fileID: 50951915877383524}
   - component: {fileID: 60479363082663632}
-  - component: {fileID: 114474399828340040}
+  - component: {fileID: 114653314856907342}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -114,7 +114,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114474399828340040
+--- !u!114 &114653314856907342
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,11 +122,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1910822312768586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2b2e2a48fd087d42aa350dcd78c1d18, type: 3}
+  m_Script: {fileID: 11500000, guid: 859963c74e694f843897921b0120ef09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  health: 3
+  health: 1
   explosion: {fileID: 1866954963652368, guid: 01b7ffa96705b234d88fbb036b721bc0, type: 2}
   thrust: 500
   bullet: {fileID: 1198583229009902, guid: b8358fd6cd131294287d48c30d75c883, type: 2}

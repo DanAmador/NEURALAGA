@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public abstract class Enemy : MovingObject {
+public abstract class Enemy : Ships {
 
     public float xSpeed, ySpeed, fireRate = 0.03f; //Firerate: seconds between actions
     public bool canShoot;
     public int hitScore;
-    public GameObject explosion;
 
 
     protected abstract void Action();
@@ -30,17 +29,10 @@ public abstract class Enemy : MovingObject {
         }
     }
 
-    protected virtual void Damage() {
-        health--;
-        GameControl.instance.UpdateScore(this.hitScore);
-        if (health <= 0) {
-            Die();
-        }
-    }
 
-    protected override void Die() {
-        Destroy(gameObject);
-        Instantiate(explosion, transform.position, Quaternion.identity);
+    public override void Damage() {
+        base.Damage();
+        GameControl.instance.UpdateScore(hitScore);
     }
 
     void OnTriggerEnter2D(Collider2D collision) {

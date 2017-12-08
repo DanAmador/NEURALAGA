@@ -3760,7 +3760,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 584530409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 409.5, y: 159, z: 0}
+  m_LocalPosition: {x: 405, y: 159, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1493890746}
@@ -3797,7 +3797,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 659562530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -304.5, y: 90, z: 0}
+  m_LocalPosition: {x: -300, y: 90, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 584530413}
@@ -3840,7 +3840,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'LIVES: 3'
+  m_Text: 'Health: 3'
 --- !u!222 &659562533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3871,7 +3871,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 670034221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af07f153d510311429871335df4b138b, type: 3}
+  m_Script: {fileID: 11500000, guid: ae6b0a3c04b36d645971e30c2cbcdee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: 0
@@ -7721,7 +7721,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1493890745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -304.5, y: 122, z: 0}
+  m_LocalPosition: {x: -300, y: 122, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 584530413}
@@ -7849,13 +7849,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928455548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659d1234c9cf0ec4ead007c894c3b6f1, type: 3}
+  m_Script: {fileID: 11500000, guid: ea709127ec5174743aa0017d4dc3966f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 0.39
-  enemies:
+  enemyTypes:
   - {fileID: 1720656522127432, guid: 7c055b67b196d97469036910bf6880b3, type: 2}
   - {fileID: 1398468347997318, guid: 5e2bec4700d8ebd459ca769659c27f58, type: 2}
+  minX: -8
+  maxX: 0
+  maxEnemies: 4
 --- !u!4 &1928455550
 Transform:
   m_ObjectHideFlags: 0
