@@ -4,7 +4,7 @@ using UnityEngine;
 public class PickupSpawner : MonoBehaviour {
     public List<Pickup> availablePickups;
     public static PickupSpawner instance;
-
+    public Pickup currentPickup;
     void Awake() {
         if (instance == null)
             instance = this;
@@ -17,8 +17,8 @@ public class PickupSpawner : MonoBehaviour {
     }
 
     public void spawnPickup(Transform location) {
-        if (Random.Range(0f, 1f) > .90f) {
-            Instantiate(getRandomPickup(), location.position, Quaternion.identity);
+        if (Random.Range(0f, 1f) > .90f && currentPickup != null) {
+            currentPickup = Instantiate(getRandomPickup(), location.position, Quaternion.identity);
         }
     }
 }

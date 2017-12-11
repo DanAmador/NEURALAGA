@@ -43,7 +43,7 @@ public class Player : Ships {
 
     }
 
-    void Shoot() {
+    public void Shoot() {
         Instantiate(bullet, transform.position, Quaternion.identity);
     }
 }

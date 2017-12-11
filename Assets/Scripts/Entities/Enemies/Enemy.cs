@@ -36,13 +36,15 @@ public abstract class Enemy : Ships {
     }
 
     protected override void Die() {
-        base.Die();
         PickupSpawner.instance.spawnPickup(transform);
+        Spawner.instance.removeEnemy(gameObject);
+        base.Die();
+
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "EnemyBounds") {
-
+            Spawner.instance.removeEnemy(gameObject);
             Destroy(gameObject);
         }
     }
