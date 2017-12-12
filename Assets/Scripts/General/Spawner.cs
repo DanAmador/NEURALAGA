@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
     public GameObject[] enemyTypes;
-    private float spawnRate, timeSinceLastSpawn;
-    public int maxEnemies = 10;
-    private float timePassed; 
+    [SerializeField]
+    private float spawnRate, timeSinceLastSpawn, onScreenEnemies, timePassed;
+    public int maxEnemies = 15;
     [Range(-8, 12)]
     public float minX, maxX;
     [SerializeField]
@@ -24,16 +24,14 @@ public class Spawner : MonoBehaviour {
     }
 
     public Vector3 getEnemyAt(int index) {
-        if(index > getAmount()-1) {
+        if (index > enemiesSpawned.Count -1) {
             return new Vector2(0, 0);
         }
         else {
             return (Vector2)enemiesSpawned[index].transform.position;
         }
     }
-    public int getAmount() {
-        return enemiesSpawned.Count;
-    }
+
 
     public void removeEnemy(GameObject toRemove) {
         enemiesSpawned.Remove(toRemove);
@@ -46,15 +44,15 @@ public class Spawner : MonoBehaviour {
     public void ResetEnemies() {
         timePassed = 0;
         timeSinceLastSpawn = 0;
-        
+
         enemiesSpawned.RemoveAll(delegate (GameObject o) { return o == null; });
         enemiesSpawned.Clear();
     }
 
 
-     void Update() {
+    void Update() {
         spawnRate = Mathf.Clamp(5 - Mathf.Log((timePassed) / 120 + 1), 0.5f, 10);
-        maxEnemies = (int)Mathf.Clamp(Mathf.Exp(timePassed / 100f) + 1, 1, 10);
+        onScreenEnemies = (int)Mathf.Clamp(Mathf.Exp(timePassed / 50f) + 1, 1, maxEnemies);
 
         if (timeSinceLastSpawn >= spawnRate) {
             StartCoroutine("spawnEnemies");
@@ -66,10 +64,11 @@ public class Spawner : MonoBehaviour {
 
 
     IEnumerator spawnEnemies() {
-        int amount = Random.Range(1, maxEnemies);
+        int waveAmount = Random.Range(1, maxEnemies);
 
-        if (getAmount() < maxEnemies) {
-            for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < waveAmount; i++) {
+            if (enemiesSpawned.Count < onScreenEnemies) {
+
                 addEnemy(Instantiate(enemyTypes[(int)Random.Range(0, enemyTypes.Length)],
                     new Vector2(Random.Range(minX, maxX), 7f), Quaternion.identity));
                 yield return new WaitForSeconds(0.5f);

@@ -453,7 +453,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 566709678
+  randomSeed: -31166829
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3835,6 +3835,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &644414776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  continuousPlayerActions: []
+  discretePlayerActions: []
+  defaultAction: 0
+  brain: {fileID: 2017400856}
 --- !u!1 &659562530
 GameObject:
   m_ObjectHideFlags: 0
@@ -4257,7 +4273,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1911197661
+  randomSeed: -1932448216
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7527,7 +7543,7 @@ Transform:
   m_Father: {fileID: 373933827}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &955132098
+--- !u!114 &1045385017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -7535,10 +7551,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  brain: {fileID: 2017400856}
+  broadcast: 1
+  brain: {fileID: 0}
 --- !u!1 &1128794036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7932,9 +7949,13 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 1720656522127432, guid: 7c055b67b196d97469036910bf6880b3, type: 2}
   - {fileID: 1398468347997318, guid: 5e2bec4700d8ebd459ca769659c27f58, type: 2}
+  spawnRate: 0
+  timeSinceLastSpawn: 0
+  onScreenEnemies: 0
+  timePassed: 0
   maxEnemies: 10
   minX: -8
-  maxX: 0
+  maxX: 10
   enemiesSpawned: []
 --- !u!4 &1928455550
 Transform:
@@ -8044,7 +8065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 4
+    stateSize: 34
     actionSize: 5
     memorySize: 0
     cameraResolutions:
@@ -8061,11 +8082,11 @@ MonoBehaviour:
     stateSpaceType: 1
   brainType: 2
   CoreBrains:
-  - {fileID: 2019637085}
-  - {fileID: 2136497767}
-  - {fileID: 955132098}
-  instanceID: 13344
---- !u!114 &2019637085
+  - {fileID: 644414776}
+  - {fileID: 1045385017}
+  - {fileID: 2060219887}
+  instanceID: 19354
+--- !u!114 &2060219887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -8073,13 +8094,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  broadcast: 1
-  continuousPlayerActions: []
-  discretePlayerActions: []
-  defaultAction: 0
   brain: {fileID: 2017400856}
 --- !u!1 &2132898027
 GameObject:
@@ -8276,16 +8293,3 @@ MonoBehaviour:
   agentStoredAction: []
   memory: []
   id: 0
---- !u!114 &2136497767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  brain: {fileID: 0}

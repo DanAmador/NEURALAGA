@@ -18,11 +18,11 @@ public class ShipAgent : Agent {
         state.Add(gameObject.transform.rotation.z);
         state.Add(gameObject.transform.rotation.x);
 
-//        for (int i = 0; i < Spawner.instance.maxEnemies; i++) {
-//            Vector2 pos = Spawner.instance.getEnemyAt(i);
-//            state.Add(pos.x);
-//            state.Add(pos.y);
-//        }
+        for (int i = 0; i < Spawner.instance.maxEnemies; i++) {
+            Vector2 pos = Spawner.instance.getEnemyAt(i);
+            state.Add(pos.x);
+            state.Add(pos.y);
+        }
 
         if (PickupSpawner.instance.currentPickup != null) {
             state.Add(PickupSpawner.instance.currentPickup.transform.position.x);
