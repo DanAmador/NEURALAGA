@@ -25,6 +25,7 @@ public class GameControl : MonoBehaviour {
     }
 
     public void ResetScene() {
+        gameOver = false;
         Spawner.instance.ResetEnemies();
         PickupSpawner.instance.ResetPickups();
         Player.instance.ResetPlayer();
@@ -48,5 +49,6 @@ public class GameControl : MonoBehaviour {
 
     public void PlayerDied() {
         gameOver = true;
+        ResetScene();
     }
 }
