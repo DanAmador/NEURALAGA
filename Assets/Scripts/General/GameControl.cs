@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour {
     public static GameControl instance;
     public bool gameOver = false;
-    private int score, health = 3;
+    public int score, health = 3;
     public Text scoreText, healthText;
 
     void Awake() {
@@ -20,8 +20,18 @@ public class GameControl : MonoBehaviour {
 
     void Update() {
         if (gameOver && Input.GetMouseButtonDown(0)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            ResetScene();
         }
+    }
+
+    public void ResetScene() {
+        gameOver = false;
+        Spawner.instance.ResetEnemies();
+        PickupSpawner.instance.ResetPickups();
+        Player.instance.ResetPlayer();
+        score = 0;
+        updateHealth();
+        UpdateScore(score);
     }
     public void UpdateScore(int score) {
         if (!gameOver) {
@@ -39,5 +49,6 @@ public class GameControl : MonoBehaviour {
 
     public void PlayerDied() {
         gameOver = true;
+        ResetScene();
     }
 }

@@ -28,6 +28,7 @@ public class EnemyKamikaze : Enemy {
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "EnemyBounds") {
+            Spawner.instance.removeEnemy(gameObject);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Player") {
