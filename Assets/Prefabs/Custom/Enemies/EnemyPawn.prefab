@@ -130,7 +130,7 @@ MonoBehaviour:
   explosion: {fileID: 1866954963652368, guid: 01b7ffa96705b234d88fbb036b721bc0, type: 2}
   xSpeed: 0
   ySpeed: 2
-  fireRate: 0.03
+  fireRate: 0.5
   canShoot: 1
   hitScore: 10
   bulletColor: {r: 0.9705882, g: 0.078503475, b: 0.078503475, a: 0}

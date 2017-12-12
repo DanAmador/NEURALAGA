@@ -47,12 +47,12 @@ public class Spawner : MonoBehaviour {
         timePassed = 0;
         timeSinceLastSpawn = 0;
         foreach(GameObject e in enemiesSpawned) {
-            e.transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(10, 20));
+            e.transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(7, 13));
         }
     }
 
 
-    private void Update() {
+     void Update() {
         spawnRate = Mathf.Clamp(5 - Mathf.Log((timePassed) / 120 + 1), 0.5f, 10);
         maxEnemies = (int)Mathf.Clamp(Mathf.Exp(timePassed / 100f) + 1, 1, 10);
 

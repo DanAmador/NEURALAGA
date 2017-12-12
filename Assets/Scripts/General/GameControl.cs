@@ -29,7 +29,8 @@ public class GameControl : MonoBehaviour {
         PickupSpawner.instance.ResetPickups();
         Player.instance.ResetPlayer();
         score = 0;
-        health = 0;
+        updateHealth();
+        UpdateScore(score);
     }
     public void UpdateScore(int score) {
         if (!gameOver) {
