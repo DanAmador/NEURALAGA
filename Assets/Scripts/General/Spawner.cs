@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour {
     public GameObject[] enemyTypes;
     private float spawnRate, timeSinceLastSpawn;
     public int maxEnemies = 10;
-
+    private float timePassed; 
     [Range(-8, 12)]
     public float minX, maxX;
     [SerializeField]
@@ -43,18 +43,23 @@ public class Spawner : MonoBehaviour {
         enemiesSpawned.Add(toAdd);
     }
 
-
+    public void resetEnemies() {
+        timePassed = 0;
+        timeSinceLastSpawn = 0;
+        enemiesSpawned.Clear();
+    }
 
 
     private void Update() {
-        spawnRate = Mathf.Clamp(5 - Mathf.Log((Time.time) / 120 + 1), 0.5f, 10);
-        maxEnemies = (int)Mathf.Clamp(Mathf.Exp(Time.time / 100f) + 1, 1, 10);
+        spawnRate = Mathf.Clamp(5 - Mathf.Log((timePassed) / 120 + 1), 0.5f, 10);
+        maxEnemies = (int)Mathf.Clamp(Mathf.Exp(timePassed / 100f) + 1, 1, 10);
 
         if (timeSinceLastSpawn >= spawnRate) {
             StartCoroutine("spawnEnemies");
             timeSinceLastSpawn = 0;
         }
         timeSinceLastSpawn += Time.deltaTime;
+        timePassed += Time.deltaTime;
     }
 
 

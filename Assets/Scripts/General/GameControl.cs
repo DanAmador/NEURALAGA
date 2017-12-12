@@ -20,8 +20,16 @@ public class GameControl : MonoBehaviour {
 
     void Update() {
         if (gameOver && Input.GetMouseButtonDown(0)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            ResetScene();
         }
+    }
+
+    public void ResetScene() {
+        Spawner.instance.resetEnemies();
+        PickupSpawner.instance.resetPickups();
+        Player.instance.resetPlayer();
+        score = 0;
+        health = 0;
     }
     public void UpdateScore(int score) {
         if (!gameOver) {

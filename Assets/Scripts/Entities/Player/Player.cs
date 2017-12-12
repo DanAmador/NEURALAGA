@@ -6,6 +6,14 @@ public class Player : Ships {
     public float thrust = 500f;
     public GameObject bullet;
     public static Player instance;
+    private float timeSinceLastShoot = 0;
+    private bool isTraining = true;
+
+    public void ResetPlayer() {
+        health = 3;
+        transform.position = new Vector2(0f, -2f);
+        timeSinceLastShoot = 0;
+    }
 
     void Awake() {
         health = 3;
@@ -19,6 +27,8 @@ public class Player : Ships {
         }
     }
 
+
+
     void FixedUpdate() {
         rb.velocity = new Vector2(0, 0);
         float x = Input.GetAxis("Horizontal") * thrust;
@@ -28,6 +38,7 @@ public class Player : Ships {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Shoot();
         }
+        timeSinceLastShoot += Time.deltaTime;
     }
 
 
@@ -38,12 +49,22 @@ public class Player : Ships {
     }
 
     protected override void Die() {
+        GameControl.instance.updateHealth();
         GameControl.instance.PlayerDied();
-        base.Die();
+        Instantiate(explosion, transform.position, Quaternion.identity);
 
+        if (isTraining) {
+            GetComponent<Agent>().done = true;
+        }
+        else {
+            base.Die();
+        }
     }
 
     public void Shoot() {
-        Instantiate(bullet, transform.position, Quaternion.identity);
+        if (timeSinceLastShoot > 0.3f) {
+            Instantiate(bullet, transform.position, Quaternion.identity);
+            timeSinceLastShoot = 0;
+        }
     }
 }
