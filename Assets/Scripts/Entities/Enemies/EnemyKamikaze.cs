@@ -10,7 +10,7 @@ public class EnemyKamikaze : Enemy {
     protected override void Action() {
 
         Instantiate(kamiKill, transform.position, Quaternion.identity);
-        Spawner.instance.removeEnemy(gameObject)
+        Spawner.instance.removeEnemy(gameObject);
         Destroy(gameObject);
     }
 
