@@ -43,10 +43,12 @@ public class Spawner : MonoBehaviour {
         enemiesSpawned.Add(toAdd);
     }
 
-    public void resetEnemies() {
+    public void ResetEnemies() {
         timePassed = 0;
         timeSinceLastSpawn = 0;
-        enemiesSpawned.Clear();
+        foreach(GameObject e in enemiesSpawned) {
+            e.transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(10, 20));
+        }
     }
 
 

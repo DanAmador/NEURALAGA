@@ -25,9 +25,9 @@ public class GameControl : MonoBehaviour {
     }
 
     public void ResetScene() {
-        Spawner.instance.resetEnemies();
-        PickupSpawner.instance.resetPickups();
-        Player.instance.resetPlayer();
+        Spawner.instance.ResetEnemies();
+        PickupSpawner.instance.ResetPickups();
+        Player.instance.ResetPlayer();
         score = 0;
         health = 0;
     }

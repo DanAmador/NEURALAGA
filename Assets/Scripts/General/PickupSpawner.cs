@@ -16,6 +16,9 @@ public class PickupSpawner : MonoBehaviour {
         return availablePickups[Random.Range(0, availablePickups.Count)];
     }
 
+    public void ResetPickups() {
+        Destroy(currentPickup);
+    }
     public void spawnPickup(Transform location) {
         if (Random.Range(0f, 1f) > .90f && currentPickup != null) {
             currentPickup = Instantiate(getRandomPickup(), location.position, Quaternion.identity);
