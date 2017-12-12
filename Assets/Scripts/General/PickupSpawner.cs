@@ -20,7 +20,7 @@ public class PickupSpawner : MonoBehaviour {
         Destroy(currentPickup);
     }
     public void spawnPickup(Transform location) {
-        if (Random.Range(0f, 1f) > .90f && currentPickup != null) {
+        if (Random.Range(0f, 1f) > .90f && currentPickup == null) {
             currentPickup = Instantiate(getRandomPickup(), location.position, Quaternion.identity);
         }
     }
