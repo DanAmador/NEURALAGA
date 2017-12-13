@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipAgent : Agent {
     private Player ship;
 
     private float currentScore = 0;
     private int currentHealth = 3;
-
+    public Text rewardText; 
 
     public override void InitializeAgent() {
         ship = GetComponent<Player>();
@@ -61,16 +61,16 @@ public class ShipAgent : Agent {
         }
         if (currentScore < (float)GameControl.instance.score) {
             currentScore = (float)GameControl.instance.score;
-            reward += 0.005f * currentScore;
+            reward += 0.05f * currentScore;
         }
 
         if (currentHealth < GameControl.instance.health) {
             //health kit picked up 
             currentHealth = GameControl.instance.health;
-            reward += .01f * currentHealth;
+            reward += .1f * currentHealth;
         }
         if (currentHealth > GameControl.instance.health) {
-            reward = (reward / 3) * 2 ;
+            reward = -1;
             currentHealth = GameControl.instance.health;
         }
 
@@ -81,7 +81,7 @@ public class ShipAgent : Agent {
             return;
         }
         reward += 0.0001f;
-
+        rewardText.text = string.Format("Reward: {0}", CumulativeReward.ToString("0.00"));
     }
 
     public override void AgentReset() {
