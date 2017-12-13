@@ -69,7 +69,7 @@ public class ShipAgent : Agent {
 
         if (currentScore != GameControl.instance.score && currenOnScreenEnemies < Spawner.instance.getOnScreenEnemies()) {
             // enemy left screen without being killed
-            reward -= .2f;
+            reward -= .02f;
             currenOnScreenEnemies = Spawner.instance.getOnScreenEnemies();
         }
        
