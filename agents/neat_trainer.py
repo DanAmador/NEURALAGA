@@ -38,12 +38,16 @@ print(str(env))
 
 # NEAT
 def eval_genomes(genomes, config):
+    counter = 0
     for genome_id, genome in genomes:
-        net = neat.nn.FeedForwardNetwork.create(genome, config)
+        print('subject ' + str(counter))
+        counter += 1
 
+        net = neat.nn.FeedForwardNetwork.create(genome, config)
+        cumulative = 0.0
         info = env.reset(train_mode = train_model, progress = None)[brain_name]
 
-        while not info.local_done:
+        while not info.local_done[0]:
             # Get states, 24 of them
             states = info.states[0]
 
@@ -51,11 +55,14 @@ def eval_genomes(genomes, config):
             output = net.activate(states)
             action = argmax(output)
 
+            # Add to fitness
+            cumulative = cumulative + info.rewards[0]
+
             # Take action
             info = env.step(action = [[action]])[brain_name]
 
         # Update fitness
-        genome.fitness = info.rewards[0]
+        genome.fitness = cumulative
 
 def run(config_file):
     # Load configuration.
@@ -72,8 +79,8 @@ def run(config_file):
     p.add_reporter(stats)
     p.add_reporter(neat.Checkpointer(5))
 
-    # Run for up to 300 generations.
-    winner = p.run(eval_genomes, 300)
+    # Run for up to 50 generations.
+    winner = p.run(eval_genomes, 50)
 
     # Display the winning genome.
     print('\nBest genome:\n{!s}'.format(winner))
@@ -82,20 +89,18 @@ def run(config_file):
 
     # Run winner
     winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
+    info = env.reset(train_mode = False, progress = None)[brain_name]
 
-    while not env.global_done:
-        info = env.reset(train_mode = False, progress = None)[brain_name]
+    while True:
+        # Get states, 24 of them
+        states = info.states[0]
 
-        while not info.local_done:
-            # Get states, 24 of them
-            states = info.states[0]
+        # Get NN (max) output
+        output = winner_net.activate(states)
+        action = argmax(output)
 
-            # Get NN (max) output
-            output = winner_net.activate(states)
-            action = argmax(output)
-
-            # Take action
-            info = env.step(action = [[action]])[brain_name]
+        # Take action
+        info = env.step(action = [[action]])[brain_name]
 
     env.close()
 
