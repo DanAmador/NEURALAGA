@@ -53,3 +53,4 @@ agents/models/ppo/ship.bytes
 *.DESKTOP-NOEB89P
 *.log
 agents/UnityPlayer.dll
+agents/neat-checkpoint-*
