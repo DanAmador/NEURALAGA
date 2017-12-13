@@ -24,11 +24,17 @@ public class Spawner : MonoBehaviour {
     }
 
     public Vector3 getEnemyAt(int index) {
-        if (index > enemiesSpawned.Count -1) {
+        if (index > enemiesSpawned.Count - 1) {
             return new Vector2(0, 0);
         }
         else {
-            return (Vector2)enemiesSpawned[index].transform.position;
+            if (!enemiesSpawned[index].GetComponent<Renderer>().isVisible) {
+                return (Vector2)enemiesSpawned[index].transform.position;
+            }
+            else {
+                return new Vector2(0, 0);
+
+            }
         }
     }
 
@@ -45,7 +51,7 @@ public class Spawner : MonoBehaviour {
         timePassed = 0;
         timeSinceLastSpawn = 0;
 
-        foreach(GameObject e in enemiesSpawned) {
+        foreach (GameObject e in enemiesSpawned) {
             Destroy(e);
         }
 
@@ -64,6 +70,7 @@ public class Spawner : MonoBehaviour {
         }
         timeSinceLastSpawn += Time.deltaTime;
         timePassed += Time.deltaTime;
+
     }
 
 
