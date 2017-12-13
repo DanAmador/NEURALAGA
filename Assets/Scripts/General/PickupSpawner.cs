@@ -17,7 +17,10 @@ public class PickupSpawner : MonoBehaviour {
     }
 
     public void ResetPickups() {
-        Destroy(currentPickup);
+        if (currentPickup != null) {
+            currentPickup.Damage(); // pickups have health, ay :v 
+
+        }
     }
     public void spawnPickup(Transform location) {
         if (Random.Range(0f, 1f) > .90f && currentPickup == null) {
