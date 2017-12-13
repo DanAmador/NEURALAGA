@@ -59,6 +59,8 @@ public class ShipAgent : Agent {
             break;
 
         }
+        reward += 0.001f;
+
         if (currentScore < (float)GameControl.instance.score) {
             currentScore = (float)GameControl.instance.score;
             reward += Mathf.Clamp(0.05f * currentScore, 0, 1);
@@ -70,7 +72,7 @@ public class ShipAgent : Agent {
             reward += Mathf.Clamp(.1f * currentHealth, 0, 1);
         }
         if (currentHealth > GameControl.instance.health) {
-            reward -= -.4f;
+            reward = -.5f;
             currentHealth = GameControl.instance.health;
         }
 
@@ -80,7 +82,6 @@ public class ShipAgent : Agent {
             done = true;
             return;
         }
-        reward += 0.0001f;
         rewardText.text = string.Format("Reward: {0}", CumulativeReward.ToString("0.00"));
     }
 
