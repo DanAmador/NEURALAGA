@@ -23,7 +23,7 @@ public class ShipAgent : Agent {
             state.Add(pos.x);
             state.Add(pos.y);
         }
-
+   
         if (PickupSpawner.instance.currentPickup != null) {
             state.Add(PickupSpawner.instance.currentPickup.transform.position.x);
             state.Add(PickupSpawner.instance.currentPickup.transform.position.y);
@@ -55,7 +55,7 @@ public class ShipAgent : Agent {
             break;
             case 4:
             ship.Shoot();
-            reward -= 0.00001f;
+            //reward -= 0.00001f;
             break;
 
         }
@@ -66,7 +66,8 @@ public class ShipAgent : Agent {
 
         if (currentHealth < GameControl.instance.health) {
             //health kit picked up 
-            reward += .001f;
+            currentHealth = GameControl.instance.health;
+            reward += .01f * currentHealth;
         }
         if (currentHealth > GameControl.instance.health) {
             reward -= .3f;

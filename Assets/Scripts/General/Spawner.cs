@@ -45,6 +45,10 @@ public class Spawner : MonoBehaviour {
         timePassed = 0;
         timeSinceLastSpawn = 0;
 
+        foreach(GameObject e in enemiesSpawned) {
+            Destroy(e);
+        }
+
         enemiesSpawned.RemoveAll(delegate (GameObject o) { return o == null; });
         enemiesSpawned.Clear();
     }
