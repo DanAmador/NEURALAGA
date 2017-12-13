@@ -8,6 +8,8 @@
 /Assets/Plugins/GitHub.meta
 /Assets/Plugins/GitHub/
 
+/agents/ship_Data
+
 # Visual Studio 2015 cache directory
 /.vs/
 
@@ -36,3 +38,19 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+agents/curricula/push.json
+agents/curricula/test.json
+agents/curricula/wall.json
+agents/models/ppo/checkpoint
+agents/models/ppo/model-1000000.cptk.data-00000-of-00001
+*.index
+*.meta
+*.data-00000-of-00001
+agents/models/ppo/raw_graph_def.pb
+agents/models/ppo/ship.bytes
+*.pyc
+*.exe
+*.DESKTOP-NOEB89P
+*.log
+agents/UnityPlayer.dll
+agents/neat-checkpoint-*
