@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class ShipAgent : Agent {
 
     private float currentScore = 0;
     private int currentHealth = 3;
+    private int currenOnScreenEnemies = 0;
     public Text rewardText;
 
     public override void InitializeAgent() {
@@ -19,16 +21,19 @@ public class ShipAgent : Agent {
         state.Add(gameObject.transform.rotation.x);
 
         for (int i = 0; i < Spawner.instance.maxEnemies; i++) {
-            Vector2 pos = Spawner.instance.getEnemyAt(i);
-            state.Add(pos.x);
-            state.Add(pos.y);
+            ArrayList enemyValues = Spawner.instance.getEnemyAt(i);
+            foreach (float value in enemyValues) {
+                state.Add(value);
+            }
         }
 
         if (PickupSpawner.instance.currentPickup != null) {
+            state.Add(1);
             state.Add(PickupSpawner.instance.currentPickup.transform.position.x);
             state.Add(PickupSpawner.instance.currentPickup.transform.position.y);
         }
         else {
+            state.Add(0);
             state.Add(0);
             state.Add(0);
 
@@ -43,6 +48,7 @@ public class ShipAgent : Agent {
         switch ((int)act[0]) {
             case 0:
             ship.rb.AddForce(new Vector2(ship.thrust, 0));
+            reward -= 0.01f;
             break;
             case 1:
             ship.rb.AddForce(new Vector2(-ship.thrust, 0));
@@ -61,18 +67,27 @@ public class ShipAgent : Agent {
         }
         reward += 0.001f;
 
+        if (currentScore != GameControl.instance.score && currenOnScreenEnemies < Spawner.instance.getOnScreenEnemies()) {
+            // enemy left screen without being killed
+            reward -= .2f;
+            currenOnScreenEnemies = Spawner.instance.getOnScreenEnemies();
+        }
+       
+
         if (currentScore < (float)GameControl.instance.score) {
+            //Enemy killed
             currentScore = (float)GameControl.instance.score;
-            reward += Mathf.Clamp(0.05f * currentScore, 0, 1);
+            currenOnScreenEnemies = Spawner.instance.getOnScreenEnemies();
+            reward += 1f;
         }
 
         if (currentHealth < GameControl.instance.health) {
             //health kit picked up 
             currentHealth = GameControl.instance.health;
-            reward += Mathf.Clamp(.1f * currentHealth, 0, 1);
+            reward += .1f * currentHealth;
         }
         if (currentHealth > GameControl.instance.health) {
-            reward = -.5f;
+            reward -= .5f;
             currentHealth = GameControl.instance.health;
         }
 
@@ -82,6 +97,7 @@ public class ShipAgent : Agent {
             done = true;
             return;
         }
+        reward = Mathf.Clamp(reward, -1f, 1f);
         rewardText.text = string.Format("Reward: {0}", CumulativeReward.ToString("0.00"));
     }
 

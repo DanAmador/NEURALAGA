@@ -23,19 +23,39 @@ public class Spawner : MonoBehaviour {
         }
     }
 
-    public Vector3 getEnemyAt(int index) {
+    public int getOnScreenEnemies() {
+        return (int)onScreenEnemies;
+    }
+
+    public ArrayList getEnemyAt(int index) {
+
+        ArrayList oneHotenemy = new ArrayList();
+
         if (index > enemiesSpawned.Count - 1) {
-            return new Vector2(0, 0);
+            oneHotenemy.Add(0f);
+            oneHotenemy.Add(0f);
+            for (int i = 0; i < enemyTypes.Length; i++) {
+                oneHotenemy.Add(0f);
+            }
         }
         else {
             if (!enemiesSpawned[index].GetComponent<Renderer>().isVisible) {
-                return (Vector2)enemiesSpawned[index].transform.position;
-            }
-            else {
-                return new Vector2(0, 0);
+                oneHotenemy.Add(enemiesSpawned[index].transform.position.x);
+                oneHotenemy.Add(enemiesSpawned[index].transform.position.y);
 
             }
+            else {
+                oneHotenemy.Add(0f);
+                oneHotenemy.Add(0f);
+            }
+
+
+            for (int i = 0; i < enemyTypes.Length; i++) {
+                oneHotenemy.Add(enemiesSpawned[index].GetComponent<Enemy>().GetEnemyType() == i ? 1f : 0f);
+            }
         }
+
+        return oneHotenemy;
     }
 
 
@@ -79,9 +99,10 @@ public class Spawner : MonoBehaviour {
 
         for (int i = 0; i < waveAmount; i++) {
             if (enemiesSpawned.Count < onScreenEnemies) {
-
-                addEnemy(Instantiate(enemyTypes[(int)Random.Range(0, enemyTypes.Length)],
-                    new Vector2(Random.Range(minX, maxX), 7f), Quaternion.identity));
+                int type = (int)Random.Range(0, enemyTypes.Length);
+                GameObject enemy = Instantiate(enemyTypes[type], new Vector2(Random.Range(minX, maxX), 7f), Quaternion.identity);
+                enemy.GetComponent<Enemy>().SetEnemyType(type);
+                addEnemy(enemy);
                 yield return new WaitForSeconds(0.5f);
             }
         }

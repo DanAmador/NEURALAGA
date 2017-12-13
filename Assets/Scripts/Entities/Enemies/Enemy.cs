@@ -6,8 +6,16 @@ public abstract class Enemy : Ships {
     public float xSpeed, ySpeed, fireRate = 0.03f; //Firerate: seconds between actions
     public bool canShoot;
     public int hitScore;
+    [SerializeField]
+    private int enemyType;
 
-
+    public int GetEnemyType() {
+        return enemyType;
+    }
+    
+    public void SetEnemyType(int type) {
+        this.enemyType = type;
+    }
     protected abstract void Action();
 
     void Start() {
