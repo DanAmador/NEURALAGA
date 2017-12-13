@@ -7,7 +7,7 @@ public class ShipAgent : Agent {
 
     private float currentScore = 0;
     private int currentHealth = 3;
-    public Text rewardText; 
+    public Text rewardText;
 
     public override void InitializeAgent() {
         ship = GetComponent<Player>();
@@ -23,7 +23,7 @@ public class ShipAgent : Agent {
             state.Add(pos.x);
             state.Add(pos.y);
         }
-   
+
         if (PickupSpawner.instance.currentPickup != null) {
             state.Add(PickupSpawner.instance.currentPickup.transform.position.x);
             state.Add(PickupSpawner.instance.currentPickup.transform.position.y);
@@ -61,16 +61,16 @@ public class ShipAgent : Agent {
         }
         if (currentScore < (float)GameControl.instance.score) {
             currentScore = (float)GameControl.instance.score;
-            reward += 0.05f * currentScore;
+            reward += Mathf.Clamp(0.05f * currentScore, 0, 1);
         }
 
         if (currentHealth < GameControl.instance.health) {
             //health kit picked up 
             currentHealth = GameControl.instance.health;
-            reward += .1f * currentHealth;
+            reward += Mathf.Clamp(.1f * currentHealth, 0, 1);
         }
         if (currentHealth > GameControl.instance.health) {
-            reward = -1;
+            reward -= -.4f;
             currentHealth = GameControl.instance.health;
         }
 

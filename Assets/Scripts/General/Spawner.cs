@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour {
     }
 
     public Vector3 getEnemyAt(int index) {
-        if (index > enemiesSpawned.Count -1) {
+        if (index > enemiesSpawned.Count -1 && !enemiesSpawned[index].GetComponent<Renderer>().isVisible) {
             return new Vector2(0, 0);
         }
         else {
