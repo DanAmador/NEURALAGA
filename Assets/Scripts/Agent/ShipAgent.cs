@@ -61,7 +61,7 @@ public class ShipAgent : Agent {
         }
         if (currentScore < (float)GameControl.instance.score) {
             currentScore = (float)GameControl.instance.score;
-            reward += 0.0005f * currentScore;
+            reward += 0.005f * currentScore;
         }
 
         if (currentHealth < GameControl.instance.health) {
@@ -70,7 +70,7 @@ public class ShipAgent : Agent {
             reward += .01f * currentHealth;
         }
         if (currentHealth > GameControl.instance.health) {
-            reward -= .3f;
+            reward = (reward / 3) * 2 ;
             currentHealth = GameControl.instance.health;
         }
 
