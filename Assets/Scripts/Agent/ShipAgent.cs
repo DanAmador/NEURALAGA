@@ -48,31 +48,26 @@ public class ShipAgent : Agent {
         switch ((int)act[0]) {
             case 0:
             ship.rb.AddForce(new Vector2(ship.thrust, 0));
+            reward += 0.0001f;
             break;
             case 1:
             ship.rb.AddForce(new Vector2(-ship.thrust, 0));
+            reward += 0.0001f;
             break;
             case 2:
             ship.rb.AddForce(new Vector2(0, ship.thrust));
-            reward -= 0.003f;
+            reward -= 0.0005f;
             break;
             case 3:
             ship.rb.AddForce(new Vector2(0, -ship.thrust));
+            reward += 0.0001f;
             break;
             case 4:
             ship.Shoot();
-            //reward -= 0.00001f;
+            reward += 0.0005f;
             break;
 
         }
-        reward += 0.001f;
-
-        if (currentScore != GameControl.instance.score && currenOnScreenEnemies < Spawner.instance.getOnScreenEnemies()) {
-            // enemy left screen without being killed
-            reward -= .02f;
-            currenOnScreenEnemies = Spawner.instance.getOnScreenEnemies();
-        }
-       
 
         if (currentScore < (float)GameControl.instance.score) {
             //Enemy killed
@@ -84,7 +79,7 @@ public class ShipAgent : Agent {
         if (currentHealth < GameControl.instance.health) {
             //health kit picked up 
             currentHealth = GameControl.instance.health;
-            reward += .1f * currentHealth;
+            reward += 1f;
         }
         if (currentHealth > GameControl.instance.health) {
             reward -= .5f;
