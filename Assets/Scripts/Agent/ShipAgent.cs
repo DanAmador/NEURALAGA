@@ -48,11 +48,11 @@ public class ShipAgent : Agent {
         switch ((int)act[0]) {
             case 0:
             ship.rb.AddForce(new Vector2(ship.thrust, 0));
-            reward += 0.001f;
+            reward += 0.01f;
             break;
             case 1:
             ship.rb.AddForce(new Vector2(-ship.thrust, 0));
-            reward += 0.001f;
+            reward += 0.01f;
             break;
             case 2:
             ship.rb.AddForce(new Vector2(0, ship.thrust));
@@ -60,11 +60,11 @@ public class ShipAgent : Agent {
             break;
             case 3:
             ship.rb.AddForce(new Vector2(0, -ship.thrust));
-            reward += 0.001f;
+            reward += 0.01f;
             break;
             case 4:
             ship.Shoot();
-            reward += 0.005f;
+            reward += 0.05f;
             break;
 
         }
